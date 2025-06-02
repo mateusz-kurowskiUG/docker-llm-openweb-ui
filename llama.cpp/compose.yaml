@@ -1,0 +1,9 @@
+services:
+  llama_cpp:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    ports:
+      - "8081:8081"
+    command: >
+      -m /model.gguf --port 8081 --host 0.0.0.0
+    volumes:
+      - "${PWD}/models/gemma3-4b/gemma-3-4b-it-q4_0.gguf:/model.gguf"
