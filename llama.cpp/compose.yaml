@@ -6,4 +6,18 @@ services:
     command: >
       -m /model.gguf --port 8081 --host 0.0.0.0
     volumes:
-      - "${PWD}/models/gemma3-4b/gemma-3-4b-it-q4_0.gguf:/model.gguf"
+      - "${PWD}/models/gemma-3-12b-abl/gemma-3-12b-it-abliterated-v2.q4_k_m.gguf:/model.gguf"
+    devices:
+      - /dev/kfd
+      - /dev/dri
+  web-ui:
+    image: ghcr.io/open-webui/open-webui:main
+    env_file:
+      - webui.env
+    ports:
+      - "3000:8080"
+    volumes:
+      - webui:/app/backend/data
+
+volumes:
+  webui:
