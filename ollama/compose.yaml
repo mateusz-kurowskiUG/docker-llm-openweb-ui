@@ -11,6 +11,7 @@ services:
   ollama:
     image: ollama/ollama #:rocm # for AMD gpu
     entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
+    gpus: all
     env_file:
       - ollama.env
     # AMD gpu:
